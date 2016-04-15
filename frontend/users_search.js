@@ -1,3 +1,5 @@
+var FollowToggle = require("./follow_toggle");
+
 var UsersSearch = function($el){
   this.$el = $el;
   this.$input = $el.find("#user-search-input");
@@ -14,6 +16,7 @@ UsersSearch.prototype.handleInput = function(event) {
     data: { query: this.$input.val() },
     dataType: "json",
     success: function(users) {
+      console.log(users);
       this.renderResults(users);
     }.bind(this),
     error: function(users) {
@@ -23,9 +26,21 @@ UsersSearch.prototype.handleInput = function(event) {
 };
 
 UsersSearch.prototype.renderResults = function (users) {
+  console.log(this.$ul);
   this.$ul.empty();
+  console.log(this.$ul);
+
   users.forEach(function(user) {
     var $li = $("<li>").text(user.username);
+    var $button = $("<button>");
+
+    $button.data("user-id", user.id);
+    var followedText = user.followed ? "followed" : "unfollowed";
+    $button.data("initial-follow-state", followedText);
+
+    new FollowToggle($button);
+
+    $li.append($button);
     this.$ul.append($li);
   }.bind(this));
 };
