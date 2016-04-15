@@ -1,7 +1,7 @@
-var FollowToggle = function ($el) {
+var FollowToggle = function ($el, options) {
   this.$el = $el;
-  this.userId = $el.data("user-id");
-  this.followState = $el.data("initial-follow-state");
+  this.userId = this.$el.data("user-id") || options.userId;
+  this.followState = this.$el.data("initial-follow-state") || options.followState;
   this.render();
   $el.on("click", this.handleClick.bind(this));
 };

@@ -34,11 +34,8 @@ UsersSearch.prototype.renderResults = function (users) {
     var $li = $("<li>").text(user.username);
     var $button = $("<button>");
 
-    $button.data("user-id", user.id);
     var followedText = user.followed ? "followed" : "unfollowed";
-    $button.data("initial-follow-state", followedText);
-
-    new FollowToggle($button);
+    new FollowToggle($button, { userId: user.id, followState: followedText});
 
     $li.append($button);
     this.$ul.append($li);
