@@ -8,11 +8,6 @@ var FollowToggle = function ($el) {
 
 FollowToggle.prototype.render = function () {
 
-  // if (this.followState === "followed"){
-  //   this.$el.text("Unfollow!");
-  // }else {
-  //   this.$el.text("Follow!");
-  // }
   switch (this.followState) {
   case "followed":
     this.$el.text("Unfollow!");
@@ -70,6 +65,7 @@ FollowToggle.prototype.handleClick = function (event) {
   }
 
 };
+
 
 
 
