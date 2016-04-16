@@ -13,6 +13,23 @@ var TweetCompose = function () {
 
   }.bind(this));
 
+  this.$form.find("a.add-mentioned-user").click(this.addMentionedUser.bind(this));
+
+  this.$form.find(".mentioned-users").on("click", "a.remove-mentioned-user", this.removeMentionedUser);
+
+
+};
+
+TweetCompose.prototype.removeMentionedUser = function (event) {
+  event.preventDefault();
+  event.currentTarget.parentElement.remove();
+
+};
+TweetCompose.prototype.addMentionedUser = function (event) {
+  event.preventDefault();
+  $(".mentioned-users").append($('script').html());
+
+
 };
 
 TweetCompose.prototype.submit = function (event) {
